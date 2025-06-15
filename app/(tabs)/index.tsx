@@ -1,26 +1,18 @@
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Text, View } from 'react-native';
+// https://ideogram.ai/assets/progressive-image/balanced/response/1yw9LYbkQR6v--TUgayfFw
+// https://ideogram.ai/assets/progressive-image/balanced/response/V90jOxp4QMib790iVjlB6Q
 
-const Tab = createMaterialTopTabNavigator();
+import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { useWallpapers } from '@/hooks/useWallpapers';
+import { Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function ForYou() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Library" component={HomeScreen} />
-      <Tab.Screen name="Liked" component={ProfileScreen} />
-      <Tab.Screen name="Suggested" component={ProfileScreen} />
-    </Tab.Navigator>
-  );
-}
 
-function HomeScreen() {
-  return <View>
-    <Text>Hi there from the home screen</Text>
-  </View>
-}
-
-function ProfileScreen() {
-  return <View>
-    <Text>Hi there from the profile screen</Text>
-  </View>;
+export default function Explore() {
+    const wallpapers = useWallpapers();
+    return <SafeAreaView style={{flex: 1}}> 
+        <ParallaxScrollView headerBackgroundColor={{dark: "black", light: "white"}} 
+        headerImage={<Image style={{flex:1}} source={{uri: wallpapers[0]?.image??""}}/>}>
+            
+        </ParallaxScrollView>
+    </SafeAreaView>;
 }
